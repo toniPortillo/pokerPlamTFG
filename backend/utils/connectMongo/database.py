@@ -6,8 +6,8 @@ import os
 from config.developmentMongoDB import Development_MongoDB
 from pymongo import MongoClient
 
-developmentDB = Development_MongoDB()
+environmentDatabase = Development_MongoDB()
 
 def mongodb():
-    client = MongoClient()
-    return client
+    client = MongoClient(environmentDatabase.gethost(), environmentDatabase.getport())
+    return client.PocDB

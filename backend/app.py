@@ -3,7 +3,8 @@ werkzeug.cached_property = werkzeug.utils.cached_property
 import sys
 sys.path.append("./")
 
-from models.contact import *
+from repositories.index import *
+
 from flask import Flask
 from flask import request
 from flask_restplus import Api, Resource
@@ -11,7 +12,7 @@ from bson.json_util import dumps
 import json
 import os
 
-modelContact = getcontact()
+repository = indexRepositories()
 
 app = Flask(__name__)
 api = Api(app, version='1.0', 
@@ -29,9 +30,7 @@ class Add(Resource):
     def post(self):
         try:
             data = json.loads(request.data)
-            status = modelContact.Contacts.insert_one(
-                data
-            )
+            status = repository['Raw'].create(data)
             return dumps({'message': 'SUCCESS'})
         except Exception as e:
             return dumps({'error': str(e)})
@@ -40,10 +39,11 @@ class Add(Resource):
 class Get_all(Resource):
     def get(self):
         try:
-            contacts = modelContact.Contacts.find()
+            contacts = repository['Raw'].getAll()
             return dumps(contacts)
         except Exception as e:
             return dumps({'error': str(e)})
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)
+
