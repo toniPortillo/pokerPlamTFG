@@ -1,6 +1,6 @@
 import os
 
-class Development_MongoDB:
+class Config_MongoDB(object):
     def __init__(self, host=os.environ["MONGOHOST"], port = int(os.environ["MONGOPORT"]),
     document_class = dict, tz_aware = False, connect = True):
         self._host = host
