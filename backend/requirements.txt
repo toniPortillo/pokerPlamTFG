@@ -1,5 +1,6 @@
 Flask==1.1.1
 flask-restplus==0.13.0
+flask-mongoengine
 jsonschema==3.2.0
 pymongo==3.10.1
 Werkzeug==1.0.0
