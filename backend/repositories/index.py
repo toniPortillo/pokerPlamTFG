@@ -1,15 +1,13 @@
 import sys
 sys.path.append("../")
 
-from models.mongoModels.index import *
-from repositories.rawrepository import *
-
-rawEntity = indexModels()
+from models.mongoSchemas.index import *
+from repositories.userrepository import UserRepository
 
 def indexRepositories():
 
   repositoriesDictionary = {
-    'Raw' : RawRepository(rawEntity['Raw'])
+    'User' : UserRepository(User)
   }
 
   return repositoriesDictionary
