@@ -38,7 +38,7 @@ class UpdateUser(Resource):
     try:
       nickname = request.args.get('nickname')
       userdata = json.loads(request.data)
-      user = userService.updateUser(nickname, userData)
+      user = userService.updateUser(nickname, userdata)
       return dumps(user)
     except Exception as e:
       return dumps({'error': str(e)})

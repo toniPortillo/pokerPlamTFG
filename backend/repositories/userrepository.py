@@ -19,10 +19,10 @@ class UserRepository():
     
     return user.objects(nickname = nickname)
 
-  def udpate(self, nickname, userdata):
-    user = serf.userentity
+  def updateDataUser(self, nickname, userdata):
+    user = self.userentity
 
-    return user.objects(nickname = nickname).udpate(username = userdata['username'], mail = userdata['mail'])
+    return user.objects(nickname = nickname).update(username = userdata['username'], mail = userdata['mail'])
 
   def removeByNickname(self, nickname):
     user = self.userentity

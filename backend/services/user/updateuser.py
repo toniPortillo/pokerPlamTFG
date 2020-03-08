@@ -1,4 +1,4 @@
 def updateUser(userRepository, nickname, userData):
-  updateduser = userRepository.update(nickname, userData)
+  updateduser = userRepository.updateDataUser(nickname, userData)
 
   return updateduser
