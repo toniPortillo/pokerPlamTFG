@@ -1,6 +1,7 @@
 import sys
 sys.path.append('../../')
 
+from werkzeug.security import generate_password_hash, check_password_hash
 from repositories.index import *
 from services.user.createuser import createUser
 from services.user.showuser import showUser
@@ -33,6 +34,6 @@ class IndexUserServices():
     return user
 
   def removeUser(self, nickname):
-    user = removeUser(self.repository, userData)
+    user = removeUser(self.repository, nickname)
 
     return user

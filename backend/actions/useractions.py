@@ -4,6 +4,7 @@ sys.path.append('../')
 from config.configApp import *
 from services.user.index import *
 userService = IndexUserServices()
+from dtos.userdto import userDto
 
 @api.route("/api/v1/user")
 class User(Resource):
@@ -11,15 +12,15 @@ class User(Resource):
     try:
       nickname = request.args.get('nickname')
       user = userService.showUser(nickname)
-      return dumps(user)
+      return dumps(user)  
     except Exception as e:
       return dumps({'error': str(e)})
 
   def post(self):
     try:
       user = json.loads(request.data)
-      status = userService.createUser(user)
-      return dumps({'message': 'SUCCESS'})
+      saveduser = userService.createUser(user)
+      return dumps(saveduser)
     except Exception as e:
       return dumps({'error': str(e)})
 
