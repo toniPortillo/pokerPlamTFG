@@ -22,15 +22,18 @@ class UserRepository():
     return user.objects.all()
 
   def findOneByNickname(self, nickname):
-    user = self.userentity
+    try:
+      user = self.userentity
     
-    usertofound = user.objects(nickname = nickname)
-    self.userdto['username'] = usertofound[0]['username']
-    self.userdto['nickname'] = usertofound[0]['nickname']
-    self.userdto['password'] = usertofound[0]['password']
-    self.userdto['mail'] = usertofound[0]['mail']
-
-    return self.userdto 
+      usertofound = user.objects(nickname = nickname)
+      self.userdto['username'] = usertofound[0]['username']
+      self.userdto['nickname'] = usertofound[0]['nickname']
+      self.userdto['password'] = usertofound[0]['password']
+      self.userdto['mail'] = usertofound[0]['mail']
+      
+      return self.userdto 
+    except Exception:
+      raise Exception('User does not exists')
 
   def updateDataUser(self, nickname, userdata):
     user = self.userentity

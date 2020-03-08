@@ -19,7 +19,7 @@ class User(Resource):
   def post(self):
     try:
       user = json.loads(request.data)
-      saveduser = userService.createUser(user)
+      saveduser = userService.userRegister(user)
       return dumps(saveduser)
     except Exception as e:
       return dumps({'error': str(e)})
