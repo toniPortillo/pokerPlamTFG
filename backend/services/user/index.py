@@ -4,6 +4,9 @@ sys.path.append('../../')
 from repositories.index import *
 from services.user.createuser import createUser
 from services.user.showuser import showUser
+from services.user.removeuser import removeUser
+from services.user.showusers import showUsers
+from services.user.updateuser import updateUser
 
 class IndexUserServices():
   def __init__(self, repository = indexRepositories()):
@@ -14,7 +17,22 @@ class IndexUserServices():
 
     return user
 
-  def showUser(self):
-    users = showUser(self.repository)
+  def showUser(self, nickname):
+    user = showUser(self.repository, nickname)
 
-    return users    
+    return user
+
+  def showUsers(self):
+    users = showUsers(self.repository)
+
+    return users
+
+  def updateUser(self, nickname, userData):
+    user = updateUser(self.repository, nickname, userData)
+
+    return user
+
+  def removeUser(self, nickname):
+    user = removeUser(self.repository, userData)
+
+    return user

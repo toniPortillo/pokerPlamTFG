@@ -9,8 +9,9 @@ userService = IndexUserServices()
 class User(Resource):
   def get(self):
     try:
-      users = userService.showUser()
-      return dumps(users)
+      nickname = request.args.get('nickname')
+      user = userService.showUser(nickname)
+      return dumps(user)
     except Exception as e:
       return dumps({'error': str(e)})
 
@@ -19,5 +20,35 @@ class User(Resource):
       user = json.loads(request.data)
       status = userService.createUser(user)
       return dumps({'message': 'SUCCESS'})
+    except Exception as e:
+      return dumps({'error': str(e)})
+
+@api.route("/api/v1/getallusers")
+class GetAllUsers(Resource):
+  def get(self):
+    try:
+      users = userService.showUsers()
+      return dumps(users)
+    except Exception as e:
+      return dumps({'error': str(e)})
+
+@api.route("/api/v1/updateuser")
+class UpdateUser(Resource):
+  def post(self):
+    try:
+      nickname = request.args.get('nickname')
+      userdata = json.loads(request.data)
+      user = userService.updateUser(nickname, userData)
+      return dumps(user)
+    except Exception as e:
+      return dumps({'error': str(e)})
+
+@api.route("/api/v1/deleteuser")
+class DeleteUser(Resource):
+  def get(self):
+    try:
+      nickname = request.args.get('nickname')
+      user = userService.removeUser(nickname)
+      return dumps(user)
     except Exception as e:
       return dumps({'error': str(e)})

@@ -8,8 +8,8 @@ from actions.index import *
 #check_microservice endpoint
 checkMicroserviceAction
 
-#data endpoint
-dataAction
+#user endpoint
+userAction
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

@@ -10,6 +10,6 @@ import os
 
 app = Flask(__name__)
 api = Api(app, version='1.0', 
-    title='Prueba concepto UnitTest Flask MongoDB',
-    description='Microservice oriented to Open Items operations.', 
+    title='pokerPlam: Tool for the use of the Poker technique of planning by teams that work remotely.',
+    description='pokerPlam apiRest', 
 )

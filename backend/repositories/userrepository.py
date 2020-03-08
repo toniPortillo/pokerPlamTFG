@@ -3,12 +3,8 @@ class UserRepository():
     self.userentity = userentity
 
   def create(self, userdata):
-    print(userdata)
     user = self.userentity
-    #user.username = userdata["username"]
-    #user.nickname = userdata["nickname"]
-    #user.password = userdata["password"]
-    #user.mail = userdata["mail"]
+
     userSaved = user(username = userdata["username"], nickname = userdata["nickname"],
     password = userdata["password"], mail = userdata["mail"]).save()
     return userSaved
@@ -17,3 +13,18 @@ class UserRepository():
     user = self.userentity
     
     return user.objects.all()
+
+  def findOneByNickname(self, nickname):
+    user = self.userentity
+    
+    return user.objects(nickname = nickname)
+
+  def udpate(self, nickname, userdata):
+    user = serf.userentity
+
+    return user.objects(nickname = nickname).udpate(username = userdata['username'], mail = userdata['mail'])
+
+  def removeByNickname(self, nickname):
+    user = self.userentity
+
+    return user.objects(nickname = nickname).delete()
