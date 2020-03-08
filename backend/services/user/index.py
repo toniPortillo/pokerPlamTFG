@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from repositories.index import *
 from services.user.createuser import createUser
 from services.user.userregister import userRegister
+from services.user.userlogin import userLogin
 from services.user.showuser import showUser
 from services.user.removeuser import removeUser
 from services.user.showusers import showUsers
@@ -22,6 +23,11 @@ class IndexUserServices():
   def userRegister(self, userData):
     user = userRegister(self.repository, generate_password_hash, userData)
     
+    return user
+
+  def userLogin(self, nickname, password):
+    user = userLogin(self.repository, check_password_hash, nickname, password)
+
     return user
 
   def showUser(self, nickname):

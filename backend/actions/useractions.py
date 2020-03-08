@@ -6,6 +6,17 @@ from services.user.index import *
 userService = IndexUserServices()
 from dtos.userdto import userDto
 
+@api.route("/api/v1/login")
+class Login(Resource):
+  def get(self):
+    try:
+      nickname = request.args.get('nickname')
+      password = request.args.get('password')
+      user = userService.userLogin(nickname, password)
+      return dumps(user)
+    except Exception as e:
+      return dumps({'error': str(e)})
+
 @api.route("/api/v1/user")
 class User(Resource):
   def get(self):
