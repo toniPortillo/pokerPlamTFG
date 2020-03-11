@@ -22,4 +22,3 @@ class FactoryDatabase:
         else:
             testdb = TestDB()
             return testdb.mongodbtest()
-            
