@@ -10,15 +10,24 @@ from dtos.userdto import userDto
 class Login(Resource):
   def get(self):
     try:
-      nickname = request.args.get('nickname')
-      password = request.args.get('password')
-      user = userService.userLogin(nickname, password)
-      return dumps(user)
+      user = json.loads(request.data)
+      loggeduser = userService.userLogin(user)
+      return dumps(loggeduser)
     except Exception as e:
       return dumps({'error': str(e)})
 
-@api.route("/api/v1/user")
-class User(Resource):
+@api.route("/api/v1/register")
+class Register(Resource):
+  def post(self):
+    try:
+      user = json.loads(request.data)
+      saveduser = userService.userRegister(user)
+      return dumps(saveduser)
+    except Exception as e:
+      return dumps({'error': str(e)})
+
+@api.route('/api/v1/showuser')
+class GetUser(Resource):
   def get(self):
     try:
       nickname = request.args.get('nickname')
@@ -27,13 +36,6 @@ class User(Resource):
     except Exception as e:
       return dumps({'error': str(e)})
 
-  def post(self):
-    try:
-      user = json.loads(request.data)
-      saveduser = userService.userRegister(user)
-      return dumps(saveduser)
-    except Exception as e:
-      return dumps({'error': str(e)})
 
 @api.route("/api/v1/getallusers")
 class GetAllUsers(Resource):

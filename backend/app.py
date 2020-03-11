@@ -9,7 +9,12 @@ from actions.index import *
 checkMicroserviceAction
 
 #user endpoint
-userAction
+loginAction
+registerAction
+showUserAction
+getAllUsersAction
+updateUserAction
+deleteUserAction
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

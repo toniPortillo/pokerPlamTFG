@@ -5,7 +5,9 @@ from actions.useractions import *
 from actions.checkmicroservice import *
 
 checkMicroserviceAction = Hello()
-userAction = User()
+loginAction = Login()
+registerAction = Register()
+showUserAction = GetUser()
 getAllUsersAction = GetAllUsers()
 updateUserAction = UpdateUser()
 deleteUserAction = DeleteUser()

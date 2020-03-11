@@ -25,8 +25,8 @@ class IndexUserServices():
     
     return user
 
-  def userLogin(self, nickname, password):
-    user = userLogin(self.repository, check_password_hash, nickname, password)
+  def userLogin(self, userData):
+    user = userLogin(self.repository, check_password_hash, userData)
 
     return user
 
