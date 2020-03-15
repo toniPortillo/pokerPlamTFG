@@ -1,4 +1,4 @@
-def userLogin(userRepository, check_password_hash, userData):
+def userLogin(userRepository: object, check_password_hash: str, userData: dict) -> str:
   try:
     user = userRepository
     userexists = user.findOneByNickname(userData['nickname'])

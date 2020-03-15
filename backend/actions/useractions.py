@@ -8,7 +8,7 @@ from dtos.userdto import userDto
 
 @api.route("/api/v1/login")
 class Login(Resource):
-  def get(self):
+  def get(self) -> dict:
     try:
       user = json.loads(request.data)
       loggeduser = userService.userLogin(user)
@@ -18,7 +18,7 @@ class Login(Resource):
 
 @api.route("/api/v1/register")
 class Register(Resource):
-  def post(self):
+  def post(self) -> dict:
     try:
       user = json.loads(request.data)
       saveduser = userService.userRegister(user)
@@ -28,7 +28,7 @@ class Register(Resource):
 
 @api.route('/api/v1/showuser')
 class GetUser(Resource):
-  def get(self):
+  def get(self) -> dict:
     try:
       nickname = request.args.get('nickname')
       user = userService.showUser(nickname)
@@ -39,7 +39,7 @@ class GetUser(Resource):
 
 @api.route("/api/v1/getallusers")
 class GetAllUsers(Resource):
-  def get(self):
+  def get(self) -> list:
     try:
       users = userService.showUsers()
       return dumps(users)
@@ -48,7 +48,7 @@ class GetAllUsers(Resource):
 
 @api.route("/api/v1/updateuser")
 class UpdateUser(Resource):
-  def post(self):
+  def post(self) -> dict:
     try:
       nickname = request.args.get('nickname')
       userdata = json.loads(request.data)
@@ -59,7 +59,7 @@ class UpdateUser(Resource):
 
 @api.route("/api/v1/deleteuser")
 class DeleteUser(Resource):
-  def get(self):
+  def get(self) -> dict:
     try:
       nickname = request.args.get('nickname')
       user = userService.removeUser(nickname)

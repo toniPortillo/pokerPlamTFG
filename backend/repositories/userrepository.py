@@ -1,9 +1,9 @@
 class UserRepository():
-  def __init__(self, userentity, userdto):
+  def __init__(self, userentity: dict, userdto: dict) -> None:
     self.userentity = userentity
     self.userdto = userdto
 
-  def create(self, userdata):
+  def create(self, userdata: dict) -> dict:
     user = self.userentity
     
     saveduser = user(username = userdata["username"], nickname = userdata["nickname"],
@@ -16,12 +16,12 @@ class UserRepository():
 
     return self.userdto
 
-  def getAll(self):
+  def getAll(self) -> list:
     user = self.userentity
     
     return user.objects.all()
 
-  def findOneByNickname(self, nickname):
+  def findOneByNickname(self, nickname: str) -> dict:
     try:
       user = self.userentity
     
@@ -35,14 +35,14 @@ class UserRepository():
     except Exception:
       raise Exception('User does not exists')
 
-  def updateDataUser(self, nickname, userdata):
+  def updateDataUser(self, nickname: str, userdata: dict) -> dict:
     user = self.userentity
     
     updateduser = user.objects(nickname = nickname).update(username = userdata['username'], mail = userdata['mail'])
     
     return updateduser
 
-  def removeByNickname(self, nickname):
+  def removeByNickname(self, nickname: str) -> int:
     user = self.userentity
 
     return user.objects(nickname = nickname).delete()

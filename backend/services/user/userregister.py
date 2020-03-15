@@ -1,4 +1,4 @@
-def userRegister(userRepository, generate_password_hash, userData):
+def userRegister(userRepository: object, generate_password_hash: str, userData: dict) -> dict:
   try:
     user = userRepository
     userexists = user.findOneByNickname(userData['nickname'])

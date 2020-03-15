@@ -12,40 +12,40 @@ from services.user.showusers import showUsers
 from services.user.updateuser import updateUser
 
 class IndexUserServices():
-  def __init__(self, repository = indexRepositories()):
+  def __init__(self, repository: dict = indexRepositories()) -> None:
     self.repository = repository['User']
 
-  def createUser(self, userData):
+  def createUser(self, userData: dict) -> dict:
     user = createUser(self.repository, userData)
 
     return user
 
-  def userRegister(self, userData):
+  def userRegister(self, userData: dict) -> dict:
     user = userRegister(self.repository, generate_password_hash, userData)
     
     return user
 
-  def userLogin(self, userData):
+  def userLogin(self, userData: dict) -> dict:
     user = userLogin(self.repository, check_password_hash, userData)
 
     return user
 
-  def showUser(self, nickname):
+  def showUser(self, nickname: str) -> dict:
     user = showUser(self.repository, nickname)
 
     return user
 
-  def showUsers(self):
+  def showUsers(self) -> list:
     users = showUsers(self.repository)
 
     return users
 
-  def updateUser(self, nickname, userData):
+  def updateUser(self, nickname: str, userData: dict) -> int:
     user = updateUser(self.repository, nickname, userData)
 
     return user
 
-  def removeUser(self, nickname):
+  def removeUser(self, nickname: str) -> int:
     user = removeUser(self.repository, nickname)
 
     return user

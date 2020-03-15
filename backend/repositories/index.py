@@ -5,7 +5,7 @@ from models.mongoSchemas.index import *
 from repositories.userrepository import UserRepository
 from dtos.userdto import userDto
 
-def indexRepositories():
+def indexRepositories() -> dict: 
 
   repositoriesDictionary = {
     'User' : UserRepository(User, userDto)

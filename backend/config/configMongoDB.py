@@ -1,40 +1,50 @@
 import os
 
 class Config_MongoDB(object):
-    def __init__(self, host=os.environ["MONGOHOST"], port = int(os.environ["MONGOPORT"]),
-    document_class = dict, tz_aware = False, connect = True):
-        self._host = host
-        self._port = port
-        self._document_class = document_class
-        self._tz_aware = tz_aware
-        self._connect = connect 
+    def __init__(self, host: str = os.environ["MONGOHOST"], port: int = int(os.environ["MONGOPORT"]),
+    document_class: dict = dict, tz_aware: bool = False, connect: bool = True) -> None:
+        self.__host = host
+        self.__port = port
+        self.__document_class = document_class
+        self.__tz_aware = tz_aware
+        self.__connect = connect 
 
-    def gethost(self):
-        return self._host
+    @property
+    def host(self) -> str:
+        return self.__host
 
-    def sethost(self, host):
-        self._host = host
+    @host.setter
+    def sethost(self, host: str) -> None:
+        self.__host = host
         
-    def getport(self):
-        return self._port
+    @property
+    def port(self) -> int:
+        return self.__port
 
-    def setport(self, port):
-        self._port = port
+    @port.setter
+    def port(self, port) -> None:
+        self.__port = port
 
-    def getdocument_class(self):
-        return self._document_class
+    @property
+    def document_class(self) -> dict:
+        return self.__document_class
 
-    def setdocument_class(self, document_class):
-        self._document_class = document_class
+    @document_class.setter
+    def document_class(self, document_class) -> None:
+        self.__document_class = document_class
     
-    def gettz_aware(self):
-        return self._tz_aware
+    @property
+    def tz_aware(self) -> bool:
+        return self.__tz_aware
 
-    def settz_aware(self, tz_aware):
-        self._tz_aware = tz_aware
+    @tz_aware.setter
+    def tz_aware(self, tz_aware) -> None:
+        self.__tz_aware = tz_aware
 
-    def getconnect(self):
-        return self._connect
+    @property
+    def connect(self) -> bool:
+        return self.__connect
 
-    def setconnect(self, connect):
-        self._connect = connect
+    @connect.setter
+    def connect(self, connect) -> None:
+        self.__connect = connect
