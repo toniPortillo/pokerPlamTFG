@@ -1,5 +1,6 @@
 import sys
 sys.path.append('../../')
+import uuid
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from repositories.index import *
@@ -21,7 +22,8 @@ class IndexUserServices():
     return user
 
   def userRegister(self, userData: dict) -> dict:
-    user = userRegister(self.repository, generate_password_hash, userData)
+    uid = uuid.uuid4()
+    user = userRegister(self.repository, uid, generate_password_hash, userData)
     
     return user
 

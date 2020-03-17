@@ -1,48 +1,65 @@
 class UserRepository():
-  def __init__(self, userentity: dict, userdto: dict) -> None:
-    self.userentity = userentity
-    self.userdto = userdto
+    def __init__(self, userentity: dict, userdto: dict) -> None:
+        self.userentity = userentity
+        self.userdto = userdto
 
-  def create(self, userdata: dict) -> dict:
-    user = self.userentity
+    def create(self, userdata: dict) -> dict:
+        user = self.userentity
     
-    saveduser = user(username = userdata["username"], nickname = userdata["nickname"],
-    password = userdata["password"], mail = userdata["mail"]).save()
+        saveduser = user(userid = userdata['userid'], username = userdata["username"], nickname = userdata["nickname"],
+        password = userdata["password"], mail = userdata["mail"]).save()
     
-    self.userdto['username'] = saveduser['username']
-    self.userdto['nickname'] = saveduser['nickname']
-    self.userdto['password'] = saveduser['password']
-    self.userdto['mail'] = saveduser['mail']
+        self.userdto['id'] = saveduser['userid']
+        self.userdto['username'] = saveduser['username']
+        self.userdto['nickname'] = saveduser['nickname']
+        self.userdto['password'] = saveduser['password']
+        self.userdto['mail'] = saveduser['mail']
 
-    return self.userdto
+        return self.userdto
 
-  def getAll(self) -> list:
-    user = self.userentity
+    def getAll(self) -> list:
+        user = self.userentity
     
-    return user.objects.all()
+        return user.objects.all()
 
-  def findOneByNickname(self, nickname: str) -> dict:
-    try:
-      user = self.userentity
+    def findOneByNickname(self, nickname: str) -> dict:
+        try:
+            user = self.userentity
     
-      usertofound = user.objects(nickname = nickname)
-      self.userdto['username'] = usertofound[0]['username']
-      self.userdto['nickname'] = usertofound[0]['nickname']
-      self.userdto['password'] = usertofound[0]['password']
-      self.userdto['mail'] = usertofound[0]['mail']
+            usertofound = user.objects(nickname = nickname)
+            self.userdto['id'] = usertofound[0]['userid']
+            self.userdto['username'] = usertofound[0]['username']
+            self.userdto['nickname'] = usertofound[0]['nickname']
+            self.userdto['password'] = usertofound[0]['password']
+            self.userdto['mail'] = usertofound[0]['mail']
       
-      return self.userdto 
-    except Exception:
-      raise Exception('User does not exists')
-
-  def updateDataUser(self, nickname: str, userdata: dict) -> dict:
-    user = self.userentity
+            return self.userdto 
+        except Exception:
+            raise Exception('User does not exists')
     
-    updateduser = user.objects(nickname = nickname).update(username = userdata['username'], mail = userdata['mail'])
+    def findOneByUserId(self, userid: str) -> dict:
+        try:
+            user = self.userentity
+
+            usertofound = user.objects(userid = userid)
+            self.userdto['id'] = usertofound[0]['userid']
+            self.userdto['username'] = usertofound[0]['username']
+            self.userdto['nickname'] = usertofound[0]['nickname']
+            self.userdto['password'] = usertofound[0]['password']
+            self.userdto['mail'] = usertofound[0]['mail']
+
+            return self.userdto
+        except Exception:
+            raise Exception('User does not exists')
+
+    def updateDataUser(self, nickname: str, userdata: dict) -> dict:
+        user = self.userentity
     
-    return updateduser
+        updateduser = user.objects(nickname = nickname).update(username = userdata['username'], mail = userdata['mail'])
+    
+        return updateduser
 
-  def removeByNickname(self, nickname: str) -> int:
-    user = self.userentity
+    def removeByNickname(self, nickname: str) -> int:
+        user = self.userentity
 
-    return user.objects(nickname = nickname).delete()
+        return user.objects(nickname = nickname).delete()

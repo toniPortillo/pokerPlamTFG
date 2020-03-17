@@ -2,6 +2,7 @@ import sys
 sys.path.append('../')
 
 from config.configApp import *
+from config.configFlaskJWT import *
 from services.user.index import *
 userService = IndexUserServices()
 from dtos.userdto import userDto
@@ -27,6 +28,7 @@ class Register(Resource):
       return dumps({'error': str(e)})
 
 @api.route('/api/v1/showuser')
+@jwt_required()
 class GetUser(Resource):
   def get(self) -> dict:
     try:
