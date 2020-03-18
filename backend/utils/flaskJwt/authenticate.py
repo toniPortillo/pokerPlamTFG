@@ -1,13 +1,13 @@
 import sys
 sys.path.append('../../')
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from repositories.index import *
 repository = indexRepositories()
 userRepository = repository['User']
 
 def authenticate(username, password) -> dict:
     try:
-        userexists = userRepository.findOneByNickname(username)
+        userexists = userRepository.findOneByUsername(username)
         correctpassword = check_password_hash(userexists['password'], password)
         if (userexists and correctpassword):
             return userexists

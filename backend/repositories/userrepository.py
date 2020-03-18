@@ -22,6 +22,22 @@ class UserRepository():
     
         return user.objects.all()
 
+    def findOneByUsername(self, username: str) -> dict:
+        try:
+            user = self.userentity
+    
+            usertofound = user.objects(username = username)
+            self.userdto['id'] = usertofound[0]['userid']
+            self.userdto['username'] = usertofound[0]['username']
+            self.userdto['nickname'] = usertofound[0]['nickname']
+            self.userdto['password'] = usertofound[0]['password']
+            self.userdto['mail'] = usertofound[0]['mail']
+      
+            return self.userdto 
+        except Exception:
+            raise Exception('User does not exists')
+    
+
     def findOneByNickname(self, nickname: str) -> dict:
         try:
             user = self.userentity

@@ -28,8 +28,8 @@ class Register(Resource):
       return dumps({'error': str(e)})
 
 @api.route('/api/v1/showuser')
-@jwt_required()
 class GetUser(Resource):
+  @jwt_required()
   def get(self) -> dict:
     try:
       nickname = request.args.get('nickname')

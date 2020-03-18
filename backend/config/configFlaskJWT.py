@@ -4,9 +4,9 @@ sys.path.append('../')
 import os
 from flask_jwt import JWT, jwt_required, current_identity
 from config.configApp import *
-from utils.flaskJwt.authenticate import authenticate
-from utils.flaskJwt.identity import identity
+from utils.flaskJwt.authenticate import *
+from utils.flaskJwt.identity import *
 
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['SECRET_KEY'] = 'super-secret'
 
 jwt = JWT(app, authenticate, identity)
