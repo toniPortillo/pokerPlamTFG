@@ -11,6 +11,7 @@ checkMicroserviceAction
 #user endpoint
 loginAction
 registerAction
+auth_user_action
 showUserAction
 getAllUsersAction
 updateUserAction

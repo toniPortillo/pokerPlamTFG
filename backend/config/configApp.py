@@ -2,7 +2,7 @@ import werkzeug
 werkzeug.cached_property = werkzeug.utils.cached_property
 
 from flask import Flask
-from flask import request
+from flask import request, jsonify
 from flask_restplus import Api, Resource
 import json
 from bson.json_util import dumps

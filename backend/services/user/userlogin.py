@@ -6,6 +6,6 @@ def userLogin(userRepository: object, check_password_hash: str, userData: dict) 
     if (userexists and correctpassword):
       return userexists
     else:
-      raise Exception  
+      raise Exception
   except Exception:
     raise Exception("User not exists or error password")

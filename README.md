@@ -33,8 +33,7 @@ Change Dockerfile values to grant database access with this environment variable
 ```
 ENV MONGOHOST = <your local mongodb instance IP.>
 ENV MONGOPORT = <port assigned to your local mongodb instance>
-ENV MONGOUSER = <your local mongodb user with read/write permissions>
-ENV MONGOPASS = <yout local mongodb pass for MONGOUSER>
+ENV SECRET = <key to generate the secret jwt token>
 ENV ENV = <enviroment in which the application and database are deployed. Write DEV for development, PRO for production and TEST por test enviroment>
 ```
 
