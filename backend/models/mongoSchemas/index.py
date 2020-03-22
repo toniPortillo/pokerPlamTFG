@@ -1,7 +1,9 @@
 import sys
 sys.path.append('../../')
 
-from utils.connectMongoEngine.devdb import *
+from utils.connectMongoEngine.database import *
+
+db = FactoryDatabase.get_database()
 
 class User(db.Document):
   userid = db.StringField(required = True)
