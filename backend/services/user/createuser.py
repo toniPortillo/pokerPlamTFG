@@ -1,4 +1,4 @@
 def createUser(userRepository: object, userData: dict) -> dict:
-  usercreated = userRepository.create(userData)
+    usercreated = userRepository.create(userData)
 
-  return usercreated
+    return usercreated
