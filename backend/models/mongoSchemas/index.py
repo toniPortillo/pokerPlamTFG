@@ -22,5 +22,5 @@ class Room(Document):
     room_name = StringField(required = True)
     created_by = ReferenceField(User)
     room_date = DateTimeField(default=datetime.datetime.now())
-    #users = ListField(ReferenceField(User))
+    users = ListField(ReferenceField(User))
     #messages = ListField(EmbeddedDocumentField(Message))
