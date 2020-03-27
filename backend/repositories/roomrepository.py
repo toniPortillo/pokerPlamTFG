@@ -37,4 +37,15 @@ class RoomRepository():
         room = self.room_entity
 
         all_the_rooms = room.objects.all()
-        return all_the_rooms
+        list_with_formated_rooms = [] 
+
+        for value in all_the_rooms:
+            self.room_dto['room_name'] = value['room_name']
+            self.room_dto['created_by'] = str(value['created_by']['id'])
+            self.room_dto['room_date'] = value['room_date']
+            self.room_dto['users'] = str(value['users'][0]['id'])
+
+            list_with_formated_rooms.append(self.room_dto)
+        
+        print(list_with_formated_rooms)
+        return list_with_formated_rooms 

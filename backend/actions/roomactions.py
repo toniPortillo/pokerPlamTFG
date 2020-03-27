@@ -41,6 +41,7 @@ class ShowAllRooms(Resource):
     def get(self) -> list:
         try:
             list_all_rooms = room_services.show_all_rooms()
+            
             response = jsonify(ok = True, data = list_all_rooms[0])
             response.status_code = 200
             return response
