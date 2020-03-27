@@ -4,6 +4,7 @@ import datetime
 
 from config.configFlaskJWTextended import *
 from repositories.index import *
+#from utilities.list_formatter import list_formatter
 from services.room.createroom import create_room
 from services.room.showroom import show_room
 from services.room.showallrooms import show_all_rooms
@@ -13,8 +14,8 @@ class IndexRoomServices():
         self.repository = repository['Room']
         self.user_repository = repository['User']
     
-    def create_room(self, room_data: dict, user_id) -> dict:
-        room  = create_room(self.repository, self.user_repository, room_data, user_id, json)
+    def create_room(self, room_data: dict, primary_user_key) -> dict:
+        room  = create_room(self.repository, self.user_repository, room_data, primary_user_key, json)
 
         return room
 

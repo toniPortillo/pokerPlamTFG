@@ -1,5 +1,5 @@
 userDto = {
-  '_id': '',
+  'pk': '',
   'id': '',
   'username': '',
   'nickname': '',

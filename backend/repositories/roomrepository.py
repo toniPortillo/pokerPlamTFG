@@ -11,7 +11,7 @@ class RoomRepository():
         saved_room.save()
         
         self.room_dto['room_name'] = saved_room['room_name']
-        self.room_dto['created_by'] = str(saved_room['created_by']['id'])
+        self.room_dto['created_by'] = str(saved_room['created_by'])
         self.room_dto['room_date'] = saved_room['room_date']
         self.room_dto['users'] = str(saved_room['users'])
         self.room_dto['messages'] = [{}]
@@ -47,5 +47,4 @@ class RoomRepository():
 
             list_with_formated_rooms.append(self.room_dto)
         
-        print(list_with_formated_rooms)
         return list_with_formated_rooms 

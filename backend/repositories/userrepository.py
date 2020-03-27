@@ -27,6 +27,7 @@ class UserRepository():
             user = self.userentity
     
             usertofound = user.objects(username = username)
+            self.userdto['pk'] = str(usertofound[0]['id'])
             self.userdto['id'] = usertofound[0]['userid']
             self.userdto['username'] = usertofound[0]['username']
             self.userdto['nickname'] = usertofound[0]['nickname']
@@ -43,6 +44,7 @@ class UserRepository():
             user = self.userentity
     
             usertofound = user.objects(nickname = nickname)
+            self.userdto['pk'] = str(usertofound[0]['id'])
             self.userdto['id'] = usertofound[0]['userid']
             self.userdto['username'] = usertofound[0]['username']
             self.userdto['nickname'] = usertofound[0]['nickname']
@@ -62,6 +64,22 @@ class UserRepository():
         except Exception:
             raise Exception('User does not exists')
 
+    def find_by_mongo_id(self, primary_user_key:  str) -> dict:
+        try:
+            print(primary_user_key)
+            user = self.userentity
+            user_found = user.objects(pk = primary_user_key)
+            self.userdto['pk'] = user_found[0]['id']
+            self.userdto['id'] = user_found[0]['userid']
+            self.userdto['username'] = user_found[0]['username']
+            self.userdto['nickname'] = user_found[0]['nickname']
+            self.userdto['password'] = user_found[0]['password']
+            self.userdto['mail'] = user_found[0]['mail']
+            
+            return self.userdto
+        except Exception:
+            raise Exception('User does not exists')
+    
     def updateDataUser(self, nickname: str, userdata: dict) -> dict:
         user = self.userentity
     

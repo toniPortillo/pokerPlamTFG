@@ -11,9 +11,9 @@ from utils.flaskJWTextend.unauthorized_loader import *
 class CreateRoom(Resource):
     def post(self) -> dict:
         try:
-            user_id = request.args.get('user_id')
+            primary_user_key = request.args.get('primary_user_key')
             room = json.loads(request.data)
-            created_room = room_services.create_room(room, user_id)
+            created_room = room_services.create_room(room, primary_user_key)
             response = jsonify(ok = True, data = created_room)
             response.status_code = 200
             return response
@@ -42,7 +42,7 @@ class ShowAllRooms(Resource):
         try:
             list_all_rooms = room_services.show_all_rooms()
             
-            response = jsonify(ok = True, data = list_all_rooms[0])
+            response = jsonify(ok = True, data = list_all_rooms)
             response.status_code = 200
             return response
         except Exception as e:
