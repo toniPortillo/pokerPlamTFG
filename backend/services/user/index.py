@@ -5,6 +5,7 @@ import uuid
 from config.configFlaskJWTextended import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from repositories.index import *
+from dtos.userdto import userDto
 from services.user.createuser import createUser
 from services.user.userregister import userRegister
 from services.user.userlogin import userLogin
@@ -15,8 +16,9 @@ from services.user.showusers import showUsers
 from services.user.updateuser import updateUser
 
 class IndexUserServices():
-    def __init__(self, repository: dict = indexRepositories()) -> None:
+    def __init__(self, repository: dict = indexRepositories(), user_dto: dict = userDto) -> None:
         self.repository = repository['User']
+        self.user_dto = user_dto
 
     def createUser(self, userData: dict) -> dict:
         user = createUser(self.repository, userData)
@@ -25,7 +27,7 @@ class IndexUserServices():
 
     def userRegister(self, userData: dict) -> dict:
         uid = uuid.uuid4()
-        user = userRegister(self.repository, uid, generate_password_hash, userData)
+        user = userRegister(self.repository, uid, generate_password_hash, userData, self.user_dto)
     
         return user
 
@@ -35,12 +37,12 @@ class IndexUserServices():
         return user
 
     def auth_user(self, userData: dict) -> dict:
-        user = auth_user(self.repository, check_password_hash, create_access_token, create_refresh_token, userData)
+        user = auth_user(self.repository, check_password_hash, create_access_token, create_refresh_token, userData, self.user_dto)
 
         return user
 
     def showUser(self, nickname: str) -> dict:
-        user = showUser(self.repository, nickname)
+        user = showUser(self.repository, nickname, self.user_dto)
 
         return user
 
@@ -50,11 +52,11 @@ class IndexUserServices():
         return users
 
     def updateUser(self, nickname: str, userData: dict) -> int:
-        user = updateUser(self.repository, nickname, userData)
+        user = updateUser(self.repository, nickname, userData, self.user_dto)
 
         return user
 
     def removeUser(self, nickname: str) -> int:
-        user = removeUser(self.repository, nickname)
+        user = removeUser(self.repository, nickname, self.user_dto)
 
         return user

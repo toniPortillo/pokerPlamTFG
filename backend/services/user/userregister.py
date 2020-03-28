@@ -1,4 +1,4 @@
-def userRegister(userRepository: object, uuid: int, generate_password_hash: str, userData: dict) -> dict:
+def userRegister(userRepository: object, uuid: int, generate_password_hash: str, userData: dict, user_dto: dict) -> dict:
   try:
     user = userRepository
     userexists = user.findOneByNickname(userData['nickname'])
@@ -22,6 +22,9 @@ def userRegister(userRepository: object, uuid: int, generate_password_hash: str,
     markeduser['password'] = generate_password_hash(password)
     markeduser['mail'] = userData['mail']
 
-    usercreated = userRepository.create(markeduser)
-    
-    return usercreated
+    user_created = userRepository.create(markeduser)
+    user_dto['username'] = user_created['username']
+    user_dto['nickname'] = user_created['nickname']
+    user_dto['mail'] = user_created['mail']
+
+    return user_dto

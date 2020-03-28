@@ -1,22 +1,14 @@
 class UserRepository():
-    def __init__(self, userentity: dict, userdto: dict) -> None:
+    def __init__(self, userentity: dict) -> None:
         self.userentity = userentity
-        self.userdto = userdto
 
     def create(self, userdata: dict) -> dict:
         user = self.userentity
     
-        saveduser = user(userid = userdata['userid'], username = userdata["username"], nickname = userdata["nickname"],
+        saved_user = user(userid = userdata['userid'], username = userdata["username"], nickname = userdata["nickname"],
         password = userdata["password"], mail = userdata["mail"]).save()
-    
-        self.userdto['id'] = saveduser['userid']
-        self.userdto['username'] = saveduser['username']
-        self.userdto['nickname'] = saveduser['nickname']
-        self.userdto['password'] = saveduser['password']
-        self.userdto['mail'] = saveduser['mail']
 
-        return self.userdto
-
+        return saved_user
     def getAll(self) -> list:
         user = self.userentity
     
@@ -26,15 +18,8 @@ class UserRepository():
         try:
             user = self.userentity
     
-            usertofound = user.objects(username = username)
-            self.userdto['pk'] = str(usertofound[0]['id'])
-            self.userdto['id'] = usertofound[0]['userid']
-            self.userdto['username'] = usertofound[0]['username']
-            self.userdto['nickname'] = usertofound[0]['nickname']
-            self.userdto['password'] = usertofound[0]['password']
-            self.userdto['mail'] = usertofound[0]['mail']
-      
-            return self.userdto 
+            user_found = user.objects(username = username)
+            return user_found[0]
         except Exception:
             raise Exception('User does not exists')
     
@@ -43,15 +28,8 @@ class UserRepository():
         try:
             user = self.userentity
     
-            usertofound = user.objects(nickname = nickname)
-            self.userdto['pk'] = str(usertofound[0]['id'])
-            self.userdto['id'] = usertofound[0]['userid']
-            self.userdto['username'] = usertofound[0]['username']
-            self.userdto['nickname'] = usertofound[0]['nickname']
-            self.userdto['password'] = usertofound[0]['password']
-            self.userdto['mail'] = usertofound[0]['mail']
-      
-            return self.userdto 
+            user_found = user.objects(nickname = nickname)
+            return user_found[0]
         except Exception:
             raise Exception('User does not exists')
     
@@ -59,24 +37,18 @@ class UserRepository():
     def findOneByUserId(self, userid: str) -> dict:
         try:
             user = self.userentity
-            usertofound = user.objects(userid = userid)
-            return usertofound
+
+            user_found = user.objects(userid = userid)
+            return user_found[0]
         except Exception:
             raise Exception('User does not exists')
 
     def find_by_mongo_id(self, primary_user_key:  str) -> dict:
         try:
-            print(primary_user_key)
             user = self.userentity
             user_found = user.objects(pk = primary_user_key)
-            self.userdto['pk'] = user_found[0]['id']
-            self.userdto['id'] = user_found[0]['userid']
-            self.userdto['username'] = user_found[0]['username']
-            self.userdto['nickname'] = user_found[0]['nickname']
-            self.userdto['password'] = user_found[0]['password']
-            self.userdto['mail'] = user_found[0]['mail']
             
-            return self.userdto
+            return user_found[0]
         except Exception:
             raise Exception('User does not exists')
     

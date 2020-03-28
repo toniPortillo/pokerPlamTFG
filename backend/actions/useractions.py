@@ -3,7 +3,7 @@ sys.path.append('../')
 
 from services.user.index import *
 userService = IndexUserServices()
-from dtos.userdto import userDto
+
 from config.configFlaskJWTextended import *
 from utils.flaskJWTextend.unauthorized_loader import *
 
