@@ -1,7 +1,6 @@
 class RoomRepository():
-    def __init__(self, room_entity: dict, room_dto: dict) -> None:
+    def __init__(self, room_entity: dict) -> None:
         self.room_entity = room_entity
-        self.room_dto = room_dto
 
     def create(self, room_data: dict) -> dict:
         room = self.room_entity
@@ -9,27 +8,15 @@ class RoomRepository():
         saved_room = room(room_name = room_data['room_name'], users = [room_data['created_by']])
         saved_room.created_by = room_data['created_by']
         saved_room.save()
-        
-        self.room_dto['room_name'] = saved_room['room_name']
-        self.room_dto['created_by'] = str(saved_room['created_by'])
-        self.room_dto['room_date'] = saved_room['room_date']
-        self.room_dto['users'] = str(saved_room['users'])
-        self.room_dto['messages'] = [{}]
 
-        return self.room_dto
+        return saved_room
 
     def find_by_room_name(self, room_name):
         try:
             room = self.room_entity
             found_room = room.objects(room_name = room_name)
 
-            self.room_dto['room_name'] = found_room[0]['room_name']
-            self.room_dto['created_by'] = str(found_room[0]['created_by']['id'])
-            self.room_dto['room_date'] = found_room[0]['room_date']
-            self.room_dto['users'] = str(found_room[0]['users'][0]['id'])
-            self.room_dto['messages'] = {}
-
-            return self.room_dto
+            return found_room[0]
         except Exception as e:
             raise Exception('Room does not exists')
 
@@ -37,14 +24,5 @@ class RoomRepository():
         room = self.room_entity
 
         all_the_rooms = room.objects.all()
-        list_with_formated_rooms = [] 
-
-        for value in all_the_rooms:
-            self.room_dto['room_name'] = value['room_name']
-            self.room_dto['created_by'] = str(value['created_by']['id'])
-            self.room_dto['room_date'] = value['room_date']
-            self.room_dto['users'] = str(value['users'][0]['id'])
-
-            list_with_formated_rooms.append(self.room_dto)
         
-        return list_with_formated_rooms 
+        return all_the_rooms 
