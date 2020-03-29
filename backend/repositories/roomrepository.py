@@ -11,7 +11,7 @@ class RoomRepository():
 
         return saved_room
 
-    def find_by_room_name(self, room_name):
+    def find_by_room_name(self, room_name) -> dict:
         try:
             room = self.room_entity
             found_room = room.objects(room_name = room_name)
@@ -25,4 +25,31 @@ class RoomRepository():
 
         all_the_rooms = room.objects.all()
         
-        return all_the_rooms 
+        return all_the_rooms
+    
+    def add_user_to_list(self, room: dict, user: dict) -> dict:
+        try:
+            room_repository = self.room_entity
+
+            room_with_the_user = room_repository.objects(room_name = room['room_name']).update_one(push__users = user)
+            return room_with_the_user
+        except Exception:
+            raise Exception("Could not add user")
+
+    def remove_user_from_list(self, room: dict, user: dict) -> dict:
+        try:
+            room_repository = self.room_entity
+
+            room_without_the_user = room_repository.objects(room_name = room['room_name']).update_one(pull__users = user)
+            return room_without_the_user
+        except Exception:
+            raise Exception("Could not remove user from room")
+
+    def delete(self, room_name: str) -> int:
+        try:
+            room_repository = self.room_entity
+
+            cleared_room = room_repository.objects(room_name = room_name).delete()
+            return cleared_room
+        except Exception:
+            raise Exception("The room could not be deleted")

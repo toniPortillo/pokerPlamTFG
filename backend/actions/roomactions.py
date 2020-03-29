@@ -49,3 +49,54 @@ class ShowAllRooms(Resource):
             response = jsonify(ok = False, message = str(e))
             response.status_code = 500
             return response
+
+@api.route("/api/v1/room/adduser")
+class AddUser(Resource):
+    def put(self) -> dict:
+        try:
+            room_name = request.args.get('room_name')
+            nickname = request.args.get('nickname')
+            
+            updated_room = room_services.add_user(room_name, nickname)
+            
+            response = jsonify(ok = True, data = updated_room)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response
+
+@api.route("/api/v1/room/deleteuser")
+class DeleteUser(Resource):
+    def put(self) -> dict:
+        try:
+            room_name = request.args.get('room_name')
+            nickname = request.args.get('nickname')
+
+            updated_room = room_services.delete_user(room_name, nickname)
+
+            response = jsonify(ok = True, data = updated_room)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response
+
+@api.route("/api/v1/room/delete")
+class DeleteRoom(Resource):
+    def put(self) -> dict:
+        try:
+            room_name = request.args.get('room_name')
+            nickname = request.args.get('nickname')
+
+            removed_room = room_services.delete_room(room_name, nickname)
+
+            response = jsonify(ok = True, data = removed_room)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response

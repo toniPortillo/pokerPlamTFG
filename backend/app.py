@@ -20,7 +20,10 @@ deleteUserAction
 # room endpoints
 create_room_action
 show_room_action
-show_all_rooms
+show_all_rooms_action
+add_user_action
+delete_user_action
+delete_room_action
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

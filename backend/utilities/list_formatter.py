@@ -1,1 +1,0 @@
-#def list_formatter(rooms: list, user_repository: object) -> list:

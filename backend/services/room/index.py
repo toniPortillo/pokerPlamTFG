@@ -7,9 +7,14 @@ from repositories.index import *
 from dtos.roomdto import room_dto
 from dtos.userdto import userDto
 from utilities.formatted_user_list import formatted_user_list
+from utilities.check_user_in_room import check_user_in_room
+from utilities.check_creator import check_creator
 from services.room.createroom import create_room
 from services.room.showroom import show_room
-from services.room.showallrooms import show_all_rooms
+from services.room.showallrooms import *
+from services.room.add_user import add_user
+from services.room.delete_user import delete_user
+from services.room.delete_room import delete_room
 
 class IndexRoomServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto, user_dto: dict = userDto) -> None:
@@ -29,6 +34,21 @@ class IndexRoomServices():
         return room
 
     def show_all_rooms(self) -> list:
-        rooms = show_all_rooms(self.repository, self.user_repository, self.room_dto, self.user_dto, formatted_user_list)
+        rooms = show_all_rooms(self.repository, self.user_repository, self.user_dto, formatted_user_list)
 
         return rooms
+
+    def add_user(self, room_name: str, nickname: str) -> dict:
+        room = add_user(self.repository, self.user_repository, room_name, nickname, check_user_in_room, self.room_dto, self.user_dto)
+
+        return room
+
+    def delete_user(self, room_name: str, nickname: str) -> dict:
+        room = delete_user(self.repository, self.user_repository, room_name, nickname, check_user_in_room, check_creator, self.room_dto)
+
+        return room
+
+    def delete_room(self, room_name: str, nickname: str) -> dict:
+        room = delete_room(self.repository, self.user_repository, room_name, nickname, check_creator)
+        
+        return room
