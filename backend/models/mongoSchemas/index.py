@@ -14,6 +14,7 @@ class User(Document):
     mail = EmailField(required = True)
 
 class Message(EmbeddedDocument):
+    order_index = IntField(required = True)
     content = StringField(required = True)
     created_by = ReferenceField(User)
     message_date = DateTimeField(required = True)
@@ -23,4 +24,4 @@ class Room(Document):
     created_by = ReferenceField(User)
     room_date = DateTimeField(default=datetime.datetime.now())
     users = ListField(ReferenceField(User))
-    #messages = ListField(EmbeddedDocumentField(Message))
+    messages = ListField(EmbeddedDocumentField(Message))
