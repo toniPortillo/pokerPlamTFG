@@ -17,7 +17,7 @@ class Message(EmbeddedDocument):
     order_index = IntField(required = True)
     content = StringField(required = True)
     created_by = ReferenceField(User)
-    message_date = DateTimeField(required = True)
+    message_date = DateTimeField(default=datetime.datetime.now())
     
 class Room(Document):
     room_name = StringField(required = True)
