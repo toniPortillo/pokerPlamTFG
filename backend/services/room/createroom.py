@@ -1,4 +1,4 @@
-def create_room(room_repository: object, user_repository:object, room_data: dict, primary_user_key, json, room_dto: dict, user_dto: dict, formatted_user_list) -> dict:
+def create_room(room_repository: object, user_repository: object, room_data: dict, primary_user_key, json, room_dto: dict, user_dto: dict, formatted_user_list) -> dict:
     try:
         found_room = room_repository.find_by_room_name(room_data['room_name'])
 

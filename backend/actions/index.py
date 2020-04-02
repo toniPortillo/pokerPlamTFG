@@ -4,6 +4,7 @@ sys.path.append('../')
 from actions.checkmicroservice import *
 from actions.useractions import *
 from actions.roomactions import *
+from actions.messageactions import *
 # Check microservice action
 checkMicroserviceAction = Hello()
 
@@ -23,3 +24,6 @@ show_all_rooms_action = ShowAllRooms()
 add_user_action = AddUser()
 delete_user_action = DeleteUser()
 delete_room_action = DeleteRoom()
+
+# Check message actions
+create_message_action = CreateMessage()

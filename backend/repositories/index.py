@@ -4,7 +4,7 @@ sys.path.append("../")
 from models.mongoSchemas.index import *
 from repositories.userrepository import UserRepository
 from repositories.roomrepository import RoomRepository
-from repositories.message_repository improt message_repository
+from repositories.message_repository import MessageRepository
 
 def indexRepositories() -> dict: 
 
