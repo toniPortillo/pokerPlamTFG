@@ -1,4 +1,4 @@
-def formatted_message_list(message_repository: object, room: dict, message_dto: dict) -> dict:
+def formatted_message_list(room: dict) -> dict:
     return [
         {
             'order_index': value['order_index'],

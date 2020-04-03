@@ -1,4 +1,4 @@
-def formatted_user_list(user_repository: object, room: dict, user_dto: dict) -> dict:
+def formatted_user_list(room: dict) -> dict:
     return [
         {
             'username': value['username'],

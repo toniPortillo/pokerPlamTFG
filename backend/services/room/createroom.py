@@ -1,4 +1,4 @@
-def create_room(room_repository: object, user_repository: object, room_data: dict, primary_user_key, json, room_dto: dict, user_dto: dict, formatted_user_list) -> dict:
+def create_room(room_repository: object, user_repository: object, room_data: dict, primary_user_key, room_dto: dict, formatted_user_list) -> dict:
     try:
         found_room = room_repository.find_by_room_name(room_data['room_name'])
 
@@ -11,7 +11,7 @@ def create_room(room_repository: object, user_repository: object, room_data: dic
         room_dto['room_name'] = room_created['room_name']
         room_dto['created_by'] = str(room_created['created_by'])
         room_dto['room_date'] = room_created['room_date']
-        room_dto['users'] = formatted_user_list(user_repository, room_created, user_dto)
+        room_dto['users'] = formatted_user_list(room_created)
         room_dto['messages'] = [{}]
 
         return room_dto

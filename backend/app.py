@@ -27,6 +27,7 @@ delete_room_action
 
 # message endpoints
 create_message_action
+get_room_messages_action
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

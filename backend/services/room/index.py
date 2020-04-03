@@ -7,6 +7,7 @@ from repositories.index import *
 from dtos.roomdto import room_dto
 from dtos.userdto import userDto
 from utilities.formatted_user_list import formatted_user_list
+from utilities.formatted_message_list import formatted_message_list
 from utilities.check_user_in_room import check_user_in_room
 from utilities.check_creator import check_creator
 from services.room.createroom import create_room
@@ -24,17 +25,17 @@ class IndexRoomServices():
         self.user_dto = user_dto
 
     def create_room(self, room_data: dict, primary_user_key) -> dict:
-        room  = create_room(self.repository, self.user_repository, room_data, primary_user_key, json, self.room_dto, self.user_dto, formatted_user_list)
+        room  = create_room(self.repository, self.user_repository, room_data, primary_user_key, self.room_dto, formatted_user_list)
 
         return room
 
     def show_room(self, room_name: str) -> dict:
-        room = show_room(self.repository, self.user_repository, room_name, self.room_dto, self.user_dto, formatted_user_list)
+        room = show_room(self.repository, room_name, self.room_dto, formatted_user_list, formatted_message_list)
 
         return room
 
     def show_all_rooms(self) -> list:
-        rooms = show_all_rooms(self.repository, self.user_repository, self.user_dto, formatted_user_list)
+        rooms = show_all_rooms(self.repository, formatted_user_list, formatted_message_list)
 
         return rooms
 

@@ -27,3 +27,4 @@ delete_room_action = DeleteRoom()
 
 # Check message actions
 create_message_action = CreateMessage()
+get_room_messages_action = ShowMessages()

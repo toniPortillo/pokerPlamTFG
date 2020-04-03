@@ -9,6 +9,7 @@ from utils.flaskJWTextend.unauthorized_loader import *
 
 @api.route("/api/v1/room/create")
 class CreateRoom(Resource):
+    @jwt_required
     def post(self) -> dict:
         try:
             primary_user_key = request.args.get('primary_user_key')
@@ -24,6 +25,7 @@ class CreateRoom(Resource):
 
 @api.route("/api/v1/room/show")
 class ShowRoom(Resource):
+    @jwt_required
     def get(self) -> dict:
         try:
             room_name = request.args.get('room_name')
@@ -38,6 +40,7 @@ class ShowRoom(Resource):
 
 @api.route("/api/v1/room/showallrooms")
 class ShowAllRooms(Resource):
+    @jwt_required
     def get(self) -> list:
         try:
             list_all_rooms = room_services.show_all_rooms()
@@ -52,6 +55,7 @@ class ShowAllRooms(Resource):
 
 @api.route("/api/v1/room/adduser")
 class AddUser(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             room_name = request.args.get('room_name')
@@ -69,6 +73,7 @@ class AddUser(Resource):
 
 @api.route("/api/v1/room/deleteuser")
 class DeleteUser(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             room_name = request.args.get('room_name')
@@ -86,6 +91,7 @@ class DeleteUser(Resource):
 
 @api.route("/api/v1/room/delete")
 class DeleteRoom(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             room_name = request.args.get('room_name')
