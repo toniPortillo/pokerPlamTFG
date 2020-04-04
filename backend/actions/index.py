@@ -5,6 +5,8 @@ from actions.checkmicroservice import *
 from actions.useractions import *
 from actions.roomactions import *
 from actions.messageactions import *
+from actions.user_story_actions import *
+
 # Check microservice action
 checkMicroserviceAction = Hello()
 
@@ -28,3 +30,7 @@ delete_room_action = DeleteRoom()
 # Check message actions
 create_message_action = CreateMessage()
 get_room_messages_action = ShowMessages()
+
+# Check user story actions
+create_user_story_action = CreateUserStory()
+get_room_user_stories_action = ShowUserStories()

@@ -29,6 +29,9 @@ delete_room_action
 create_message_action
 get_room_messages_action
 
+# user story endpoints
+create_user_story_action
+get_room_user_stories_action
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)
 

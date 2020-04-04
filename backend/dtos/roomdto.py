@@ -3,5 +3,6 @@ room_dto = {
     'created_by': None,
     'room_date': None,
     'users': [],
-    'messages': []
+    'messages': [],
+    'user_stories': []
 }

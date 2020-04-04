@@ -17,11 +17,23 @@ class Message(EmbeddedDocument):
     order_index = IntField(required = True)
     content = StringField(required = True)
     created_by = ReferenceField(User)
-    message_date = DateTimeField(default=datetime.datetime.now())
+    message_date = DateTimeField(default = datetime.datetime.now())
+
+class User_story(EmbeddedDocument):
+    order_index = IntField(required = True)
+    story_title = StringField(required = True)
+    role = StringField(required = True)
+    reason = StringField(required = True)
+    estimate = IntField(required = True)
+    importance = IntField(required = True)
+    acceptance_criteria = StringField(required = True)
+    created_by = ReferenceField(User)
+    User_story_date = DateTimeField(default = datetime.datetime.now())
     
 class Room(Document):
     room_name = StringField(required = True)
     created_by = ReferenceField(User)
-    room_date = DateTimeField(default=datetime.datetime.now())
+    room_date = DateTimeField(default = datetime.datetime.now())
     users = ListField(ReferenceField(User))
     messages = ListField(EmbeddedDocumentField(Message))
+    user_stories = ListField(EmbeddedDocumentField(User_story))
