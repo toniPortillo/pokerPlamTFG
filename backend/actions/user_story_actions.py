@@ -38,3 +38,18 @@ class ShowUserStories(Resource):
             response = jsonify(ok = False, message = str(e))
             response.status_code = 500
             return response
+
+@api.route("/api/v1/userstory/delete")
+class DeleteUserStory(Resource):
+    def put(self) -> dict:
+        try:
+            room_name = request.args.get('room_name')
+            storyid = request.args.get('storyid')
+            updated_user_story = user_story_services.delete_user_story(room_name, storyid)
+            response = jsonify(ok = True, data = updated_user_story)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response

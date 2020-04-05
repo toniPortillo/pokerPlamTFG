@@ -1,4 +1,5 @@
-def show_room(room_repository: object, room_name: str, room_dto: dict, formatted_user_list, formatted_message_list) -> dict:
+def show_room(room_repository: object, room_name: str, room_dto: dict, formatted_user_list, formatted_message_list,
+formatted_user_story_list) -> dict:
     found_room = room_repository.find_by_room_name(room_name)
     
     room_dto['room_name'] = found_room['room_name']
@@ -6,6 +7,7 @@ def show_room(room_repository: object, room_name: str, room_dto: dict, formatted
     room_dto['room_date'] = found_room['room_date']
     room_dto['users'] = formatted_user_list(found_room)
     room_dto['messages'] = formatted_message_list(found_room)
+    room_dto['user_stories'] = formatted_user_story_list(found_room)
 
     return room_dto
     

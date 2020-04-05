@@ -20,6 +20,7 @@ class Message(EmbeddedDocument):
     message_date = DateTimeField(default = datetime.datetime.now())
 
 class User_story(EmbeddedDocument):
+    storyid = StringField(required = True)
     order_index = IntField(required = True)
     story_title = StringField(required = True)
     role = StringField(required = True)

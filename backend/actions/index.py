@@ -34,3 +34,4 @@ get_room_messages_action = ShowMessages()
 # Check user story actions
 create_user_story_action = CreateUserStory()
 get_room_user_stories_action = ShowUserStories()
+delete_user_story_action = DeleteUserStory()

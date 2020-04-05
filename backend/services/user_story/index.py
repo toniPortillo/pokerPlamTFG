@@ -1,5 +1,6 @@
 import sys
 sys.path.append('../../')
+import uuid
 
 from config.configFlaskJWTextended import *
 from repositories.index import *
@@ -11,6 +12,7 @@ from utilities.formatted_user_list import formatted_user_list
 from utilities.formatted_user_story_list import formatted_user_story_list
 from services.user_story.create_user_story import create_user_story
 from services.user_story.get_room_user_stories import get_room_user_stories
+from services.user_story.delete_user_story import delete_user_story
 
 class IndexUserStoryServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto, user_dto: dict = userDto) -> None:
@@ -21,7 +23,9 @@ class IndexUserStoryServices():
         self.user_dto = user_dto
 
     def create_user_story(self, user_story_data: dict, room_name: str, primary_user_key: str) -> dict:
-        user_story = create_user_story(self.repository, self.user_repository, user_story_data, room_name, primary_user_key,
+        storyid = uuid.uuid4()
+
+        user_story = create_user_story(self.repository, self.user_repository, storyid, user_story_data, room_name, primary_user_key,
         self.room_dto, formatted_user_list, formatted_message_list, formatted_user_story_list)
 
         return user_story
@@ -30,3 +34,9 @@ class IndexUserStoryServices():
         user_story_list = get_room_user_stories(self.room_repository, room_name, formatted_user_story_list)
 
         return user_story_list
+
+    def delete_user_story(self, room_name: str, storyid: str) -> dict:
+        User_story = delete_user_story(self.repository, storyid, room_name, room_dto, formatted_user_list, formatted_message_list, 
+        formatted_user_story_list)
+
+        return User_story

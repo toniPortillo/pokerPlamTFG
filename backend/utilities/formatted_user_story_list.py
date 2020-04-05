@@ -1,6 +1,7 @@
 def formatted_user_story_list(room: dict) -> list:
     return [
         {
+            'storyid': value['storyid'],
             'order_index': value['order_index'],
             'story_title': value['story_title'],
             'role': value['role'],
