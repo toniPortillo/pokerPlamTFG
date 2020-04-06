@@ -10,8 +10,8 @@ class UserStoryRepository():
             found_room = room.objects(room_name = room_name).first()
             saved_user_story = user_story(storyid = user_story_data['storyid'], order_index = len(found_room['user_stories']) + 1, 
             story_title = user_story_data['story_title'], role = user_story_data['role'], reason = user_story_data['reason'],
-            estimate = int(user_story_data['estimate']), importance = int(user_story_data['importance']), 
-            acceptance_criteria = user_story_data['acceptance_criteria'], created_by = user_story_data['created_by'])
+            estimate = 0, importance = 0, acceptance_criteria = user_story_data['acceptance_criteria'], 
+            created_by = user_story_data['created_by'])
             found_room.user_stories.append(saved_user_story)
             found_room.save()
 
@@ -34,3 +34,19 @@ class UserStoryRepository():
                     return found_room
         except Exception as e:
             raise Exception('User story was not removed')
+
+    def modify_user_story(self, storyid: str, user_story_data: dict) -> dict:
+        try:
+            room = self.room_entity
+            user_story = self.user_story_entity
+            found_room = room.objects(user_stories__storyid=storyid).first()
+        
+            for value in found_room['user_stories']:
+                if(value['storyid'] == storyid):
+                    value['estimate'] = user_story_data['estimate']
+                    value['importance'] = user_story_data['importance']
+                    found_room.save()
+                    return found_room
+            raise Exception        
+        except Exception as e:
+            raise Exception("Unmodified user story")

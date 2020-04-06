@@ -41,11 +41,28 @@ class ShowUserStories(Resource):
 
 @api.route("/api/v1/userstory/delete")
 class DeleteUserStory(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             room_name = request.args.get('room_name')
             storyid = request.args.get('storyid')
             updated_user_story = user_story_services.delete_user_story(room_name, storyid)
+            response = jsonify(ok = True, data = updated_user_story)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response
+
+@api.route("/api/v1/userstory/modify")
+class ModifyUserStory(Resource):
+    @jwt_required
+    def put(self) -> dict:
+        try:
+            storyid = request.args.get('storyid')
+            user_story_data = json.loads(request.data)
+            updated_user_story = user_story_services.modify_user_story(storyid, user_story_data)
             response = jsonify(ok = True, data = updated_user_story)
             response.status_code = 200
             return response

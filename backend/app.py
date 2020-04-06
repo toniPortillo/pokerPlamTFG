@@ -33,6 +33,7 @@ get_room_messages_action
 create_user_story_action
 get_room_user_stories_action
 delete_user_story_action
+modify_user_story_action
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

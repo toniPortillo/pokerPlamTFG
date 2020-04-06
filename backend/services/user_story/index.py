@@ -13,6 +13,7 @@ from utilities.formatted_user_story_list import formatted_user_story_list
 from services.user_story.create_user_story import create_user_story
 from services.user_story.get_room_user_stories import get_room_user_stories
 from services.user_story.delete_user_story import delete_user_story
+from services.user_story.modify_user_story import modify_user_story
 
 class IndexUserStoryServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto, user_dto: dict = userDto) -> None:
@@ -36,7 +37,13 @@ class IndexUserStoryServices():
         return user_story_list
 
     def delete_user_story(self, room_name: str, storyid: str) -> dict:
-        User_story = delete_user_story(self.repository, storyid, room_name, room_dto, formatted_user_list, formatted_message_list, 
+        user_story = delete_user_story(self.repository, storyid, room_name, room_dto, formatted_user_list, formatted_message_list, 
         formatted_user_story_list)
 
-        return User_story
+        return user_story
+
+    def modify_user_story(self, storyid: str, user_story_data: dict) -> dict:
+        user_story = modify_user_story(self.repository, storyid, user_story_data, room_dto, formatted_user_list,
+        formatted_message_list, formatted_user_story_list)
+
+        return user_story
