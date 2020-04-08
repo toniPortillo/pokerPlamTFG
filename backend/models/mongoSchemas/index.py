@@ -30,6 +30,14 @@ class User_story(EmbeddedDocument):
     acceptance_criteria = StringField(required = True)
     created_by = ReferenceField(User)
     User_story_date = DateTimeField(default = datetime.datetime.now())
+
+class Estimate(EmbeddedDocument):
+    estimateid = StringField(required = True)
+    title = StringField(required = True)
+    final_value = IntField(required = True)
+    commentary = StringField(required = True)
+    created_by = ReferenceField(User)
+    estimate_date = DateTimeField(default = datetime.datetime.now())
     
 class Room(Document):
     room_name = StringField(required = True)
@@ -38,3 +46,4 @@ class Room(Document):
     users = ListField(ReferenceField(User))
     messages = ListField(EmbeddedDocumentField(Message))
     user_stories = ListField(EmbeddedDocumentField(User_story))
+    estimates = ListField(EmbeddedDocumentField(Estimate))

@@ -4,5 +4,6 @@ room_dto = {
     'room_date': None,
     'users': [],
     'messages': [],
-    'user_stories': []
+    'user_stories': [],
+    'estimates': []
 }

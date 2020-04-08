@@ -6,6 +6,7 @@ from repositories.userrepository import UserRepository
 from repositories.roomrepository import RoomRepository
 from repositories.message_repository import MessageRepository
 from repositories.user_story_repository import UserStoryRepository
+from repositories.estimate_repository import EstimateRepository
 
 def indexRepositories() -> dict: 
 
@@ -13,7 +14,8 @@ def indexRepositories() -> dict:
     'User': UserRepository(User),
     'Room': RoomRepository(Room),
     'Message': MessageRepository(Room, Message),
-    'User_story': UserStoryRepository(Room, User_story)
+    'User_story': UserStoryRepository(Room, User_story),
+    'Estimate': EstimateRepository(Room, Estimate)
   }
 
   return repositoriesDictionary

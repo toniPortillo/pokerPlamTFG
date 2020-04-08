@@ -10,7 +10,7 @@ from utils.flaskJWTextend.unauthorized_loader import *
 @api.route("/api/v1/userstory/create")
 class CreateUserStory(Resource):
     @jwt_required
-    def post(self ) -> dict:
+    def post(self) -> dict:
         try:
             room_name = request.args.get('room_name')
             created_by = request.args.get('created_by')
