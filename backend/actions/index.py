@@ -40,3 +40,4 @@ modify_user_story_action = ModifyUserStory()
 
 # Check estimate actions
 create_estimate_action = CreateEstimate()
+delete_estimate_action = DeleteEstimate()

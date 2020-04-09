@@ -24,3 +24,17 @@ class CreateEstimate(Resource):
             response = jsonify(ok = False, message = str(e))
             response.status_code = 500
             return response
+
+@api.route("/api/v1/estimate/delete")
+class DeleteEstimate(Resource):
+    def put(self) -> dict:
+        try:
+            estimateid = request.args.get('estimateid')
+            estimate_deleted = estimate_services.delete_estimate(estimateid)
+            response = jsonify(ok = True, data = estimate_deleted)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response

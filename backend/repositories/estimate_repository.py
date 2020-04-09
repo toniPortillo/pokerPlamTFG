@@ -18,3 +18,16 @@ class EstimateRepository():
             return found_room
         except Exception as e:
             raise Exception('The estimate was not created')
+
+    def delete(self, estimateid: str) -> dict:
+        try:
+            room = self.room_entity
+            print(estimateid)
+            found_estimate = room.objects(estimates__match={"estimateid": estimateid}).first()
+            for value in found_estimate['estimates']:
+                if(value['estimateid'] == estimateid):
+                    found_estimate.estimates.remove(value)
+                    found_estimate.save()
+                    return found_estimate
+        except Exception:
+            raise Exception('Estimate was not removed')

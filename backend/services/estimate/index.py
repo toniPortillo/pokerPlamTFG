@@ -10,6 +10,7 @@ from utilities.formatted_user_list import formatted_user_list
 from utilities.formatted_user_story_list import formatted_user_story_list
 from utilities.formatted_estimate_list import formatted_estimate_list
 from services.estimate.create_estimate import create_estimate
+from services.estimate.delete_estimate import delete_estimate
 
 class IndexEstimateServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto) -> None:
@@ -25,3 +26,10 @@ class IndexEstimateServices():
         self.room_dto, formatted_user_list, formatted_message_list, formatted_user_story_list, formatted_estimate_list)
 
         return estimate
+
+    def delete_estimate(self, estimateid: str) -> dict:
+        
+        estimate_deleted = delete_estimate(self.repository, estimateid, self.room_dto, formatted_user_list,
+        formatted_message_list, formatted_user_story_list, formatted_estimate_list)
+
+        return estimate_deleted
