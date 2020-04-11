@@ -66,3 +66,18 @@ class ModifyTitle(Resource):
             response = jsonify(ok = False, message = str(e))
             response.status_code = 500
             return response
+
+@api.route("/api/v1/estimate/modifycommentary")
+class ModifyComentary(Resource):
+    def put(self) -> dict:
+        try:
+            estimateid = request.args.get('estimateid')
+            commentary = request.args.get('commentary')
+            estimate_modified = estimate_services.modify_commentary(estimateid, commentary)
+            response = jsonify(ok = True, data = estimate_modified)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response

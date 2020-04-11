@@ -13,6 +13,7 @@ from services.estimate.create_estimate import create_estimate
 from services.estimate.delete_estimate import delete_estimate
 from services.estimate.modify_final_value import modify_final_value
 from services.estimate.modify_title import modify_title
+from services.estimate.modify_commentary import modify_commentary
 
 class IndexEstimateServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto) -> None:
@@ -45,5 +46,11 @@ class IndexEstimateServices():
     def modify_title(self, estimateid: str, title: str) -> dict:
         estimate_modified = modify_title(self.repository, estimateid, title, self.room_dto, formatted_user_list,
         formatted_message_list, formatted_user_list, formatted_estimate_list)
+
+        return estimate_modified
+
+    def modify_commentary(self, estimateid: str, commentary: str) -> dict:
+        estimate_modified = modify_commentary(self.repository, estimateid, commentary, self.room_dto, formatted_user_list,
+        formatted_message_list, formatted_user_story_list, formatted_estimate_list)
 
         return estimate_modified
