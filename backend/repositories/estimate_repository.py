@@ -22,7 +22,6 @@ class EstimateRepository():
     def delete(self, estimateid: str) -> dict:
         try:
             room = self.room_entity
-            print(estimateid)
             found_estimate = room.objects(estimates__match={"estimateid": estimateid}).first()
             for value in found_estimate['estimates']:
                 if(value['estimateid'] == estimateid):
@@ -31,3 +30,16 @@ class EstimateRepository():
                     return found_estimate
         except Exception:
             raise Exception('Estimate was not removed')
+
+    def modify_final_value(self, estimateid: str, final_value: int) -> dict:
+        try:
+            room = self.room_entity
+            found_estimate = room.objects(estimates__match={"estimateid": estimateid}).first()
+            for value in found_estimate['estimates']:
+                if(value['estimateid'] == estimateid):
+                    value['final_value'] = final_value
+                    found_estimate.save()
+                    return found_estimate
+            raise Exception
+        except Exception:
+            raise Exception("Unmodified estimate")

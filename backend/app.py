@@ -38,6 +38,7 @@ modify_user_story_action
 # estimate endpoints
 create_estimate_action
 delete_estimate_action
+modify_final_value_action
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

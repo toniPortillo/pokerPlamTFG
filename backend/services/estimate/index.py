@@ -11,6 +11,7 @@ from utilities.formatted_user_story_list import formatted_user_story_list
 from utilities.formatted_estimate_list import formatted_estimate_list
 from services.estimate.create_estimate import create_estimate
 from services.estimate.delete_estimate import delete_estimate
+from services.estimate.modify_final_value import modify_final_value
 
 class IndexEstimateServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto) -> None:
@@ -33,3 +34,9 @@ class IndexEstimateServices():
         formatted_message_list, formatted_user_story_list, formatted_estimate_list)
 
         return estimate_deleted
+
+    def modify_final_value(self, estimateid: str, final_value: int) -> dict:
+        estimate_modified = modify_final_value(self.repository, estimateid, final_value, self.room_dto, formatted_user_list,
+        formatted_message_list, formatted_user_story_list, formatted_estimate_list)
+
+        return estimate_modified
