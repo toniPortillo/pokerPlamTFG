@@ -43,3 +43,16 @@ class EstimateRepository():
             raise Exception
         except Exception:
             raise Exception("Unmodified estimate")
+
+    def modify_title(self, estimateid: str, title: str) -> dict:
+        try:
+            room = self.room_entity
+            found_estimate = room.objects(estimates__match={"estimateid": estimateid}).first()
+            for value in found_estimate['estimates']:
+                if(value['estimateid'] == estimateid):
+                    value['title'] = title
+                    found_estimate.save()
+                    return found_estimate
+            raise Exception
+        except Exception:
+            raise Exception("Unmodified estimate")
