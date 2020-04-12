@@ -31,6 +31,12 @@ class User_story(EmbeddedDocument):
     created_by = ReferenceField(User)
     User_story_date = DateTimeField(default = datetime.datetime.now())
 
+class Vote(EmbeddedDocument):
+    voteid = StringField(required = True)
+    voter = StringField(required = True)
+    vote_content = StringField(required = True)
+    vote_date = DateTimeField(default = datetime.datetime.now())
+
 class Estimate(EmbeddedDocument):
     estimateid = StringField(required = True)
     title = StringField(required = True)
@@ -38,7 +44,8 @@ class Estimate(EmbeddedDocument):
     commentary = StringField(required = True)
     created_by = ReferenceField(User)
     estimate_date = DateTimeField(default = datetime.datetime.now())
-    
+    votes = ListField(EmbeddedDocumentField(Vote))
+
 class Room(Document):
     room_name = StringField(required = True)
     created_by = ReferenceField(User)

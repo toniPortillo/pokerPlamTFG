@@ -22,10 +22,10 @@ class IndexEstimateServices():
         self.room_repository = repository['Room']
         self.room_dto = room_dto
 
-    def create_estimate(self, estimate_date: dict, room_name: str, primary_user_key: str) -> dict:
+    def create_estimate(self, estimate_data: dict, room_name: str, primary_user_key: str) -> dict:
         estimateid = uuid.uuid4()
 
-        estimate = create_estimate(self.repository, self.user_repository, estimateid, estimate_date, room_name, primary_user_key,
+        estimate = create_estimate(self.repository, self.user_repository, estimateid, estimate_data, room_name, primary_user_key,
         self.room_dto, formatted_user_list, formatted_message_list, formatted_user_story_list, formatted_estimate_list)
 
         return estimate

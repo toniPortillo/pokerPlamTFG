@@ -7,6 +7,7 @@ from actions.roomactions import *
 from actions.messageactions import *
 from actions.user_story_actions import *
 from actions.estimate_actions import *
+from actions.vote_actions import *
 
 # Check microservice action
 checkMicroserviceAction = Hello()
@@ -44,3 +45,6 @@ delete_estimate_action = DeleteEstimate()
 modify_final_value_action = ModifyFinalValue()
 modify_title_action = ModifyTitle()
 modify_commentary_action = ModifyComentary()
+
+# Check vote actions 
+create_vote_action = CreateVote()
