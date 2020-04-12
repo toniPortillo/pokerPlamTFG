@@ -4,7 +4,7 @@ class VoteRepository():
         self.estimate_entity = estimate_entity
         self.vote_entity = vote_entity
     
-    def create(self, room_name: str, estimateid: str ,vote_data: dict) -> dict:
+    def create(self, room_name: str, estimateid: str, nickname: str, vote_data: dict) -> dict:
         try:
             room  = self.room_entity
             vote  = self.vote_entity
@@ -14,11 +14,14 @@ class VoteRepository():
 
             for value in found_room['estimates']:
                 if(value['estimateid'] == estimateid):
+                    for vote in value['votes']:
+                        if(vote['voter'] == nickname):
+                            raise Exception("The user already voted")
                     value.votes.append(saved_vote)
                     found_room.save()
                     print(found_room['room_name'])
                     print(vote_data['voteid'])
 
                     return found_room
-        except Exception:
-            raise Exception('The vote was not created')
+        except Exception as e:
+            raise Exception(str(e))

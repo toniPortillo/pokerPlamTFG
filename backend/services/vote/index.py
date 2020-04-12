@@ -18,10 +18,10 @@ class IndexVoteServices():
         self.room_repository = repository['Room']
         self.room_dto = room_dto
 
-    def create_vote(self, vote_data: dict, room_name: str, estimateid: str) -> dict:
+    def create_vote(self, vote_data: dict, room_name: str, estimateid: str, nickname: str) -> dict:
         voteid = uuid.uuid4()
 
-        vote = create_vote(self.repository, estimateid, voteid, vote_data, room_name, self.room_dto, 
+        vote = create_vote(self.repository, estimateid, nickname, voteid, vote_data, room_name, self.room_dto, 
         formatted_user_list, formatted_message_list, formatted_user_story_list, formatted_estimate_list, 
         formatted_vote_list)
 

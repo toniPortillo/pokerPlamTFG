@@ -13,8 +13,9 @@ class CreateVote(Resource):
         try:
             room_name = request.args.get('room_name')
             estimateid = request.args.get('estimateid')
+            nickname = request.args.get('nickname')
             vote = json.loads(request.data)
-            vote_created = vote_services.create_vote(vote, room_name, estimateid)
+            vote_created = vote_services.create_vote(vote, room_name, estimateid, nickname)
             response = jsonify(ok = True, data = vote_created)
             response.status_code = 200
             return response
