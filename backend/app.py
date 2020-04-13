@@ -44,6 +44,7 @@ modify_commentary_action
 
 # vote endpoints
 create_vote_action
+show_votes_action
 
 if __name__ == '__main__':
   app.run('0.0.0.0', 5000, debug = True)

@@ -23,3 +23,18 @@ class CreateVote(Resource):
             response = jsonify(ok = False, message = str(e))
             response.status_code = 500
             return response
+
+@api.route("/api/v1/vote/showvotes")
+class ShowVotes(Resource):
+    def get(self) -> dict:
+        try:
+            room_name = request.args.get('room_name')
+            estimateid = request.args.get('estimateid')
+            get_estimate = vote_services.show_votes(room_name, estimateid)
+            response = jsonify(ok = True, data = get_estimate)
+            response.status_code = 200
+            return response
+        except Exception as e:
+            response = jsonify(ok = False, message = str(e))
+            response.status_code = 500
+            return response

@@ -19,9 +19,21 @@ class VoteRepository():
                             raise Exception("The user already voted")
                     value.votes.append(saved_vote)
                     found_room.save()
-                    print(found_room['room_name'])
-                    print(vote_data['voteid'])
 
                     return found_room
+        except Exception as e:
+            raise Exception(str(e))
+
+    def get_votes(self, room_name: str, estimateid: str) -> dict:
+        try:
+            room = self.room_entity
+            found_room = room.objects(room_name = room_name).first()
+            
+            for value in found_room['estimates']:
+                if(value['estimateid'] == estimateid):
+                    if(len(value['votes']) == len(found_room['users'])):
+                        return value
+                    else:
+                        raise Exception("Not all users voted")
         except Exception as e:
             raise Exception(str(e))
