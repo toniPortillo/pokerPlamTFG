@@ -37,3 +37,19 @@ class VoteRepository():
                         raise Exception("Not all users voted")
         except Exception as e:
             raise Exception(str(e))
+
+    def delete(self, room_name: str, estimateid: str, nickname: str) -> dict:
+        try:
+            room = self.room_entity
+            found_room = room.objects(room_name = room_name).first()
+
+            for value in found_room['estimates']:
+                if(value['estimateid'] == estimateid):
+                    for vote in value['votes']:
+                        if(vote['voter'] == nickname):
+                            value.votes.remove(vote)
+                            found_room.save()
+                            return value
+                    raise Exception("Yout vote does not exist")
+        except Exception as e:
+            raise Exception(str(e))
