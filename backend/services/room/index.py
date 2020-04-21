@@ -10,6 +10,8 @@ from utilities.formatted_user_list import formatted_user_list
 from utilities.formatted_message_list import formatted_message_list
 from utilities.check_user_in_room import check_user_in_room
 from utilities.formatted_user_story_list import formatted_user_story_list
+from utilities.formatted_estimate_list import formatted_estimate_list
+from utilities.formatted_vote_list import formatted_vote_list
 from utilities.check_creator import check_creator
 from services.room.createroom import create_room
 from services.room.showroom import show_room
@@ -31,12 +33,14 @@ class IndexRoomServices():
         return room
 
     def show_room(self, room_name: str) -> dict:
-        room = show_room(self.repository, room_name, self.room_dto, formatted_user_list, formatted_message_list, formatted_user_story_list)
+        room = show_room(self.repository, room_name, self.room_dto, formatted_user_list, formatted_message_list, formatted_user_story_list, 
+        formatted_estimate_list, formatted_vote_list)
 
         return room
 
     def show_all_rooms(self) -> list:
-        rooms = show_all_rooms(self.repository, formatted_user_list, formatted_message_list, formatted_user_story_list)
+        rooms = show_all_rooms(self.repository, formatted_user_list, formatted_message_list, formatted_user_story_list, 
+        formatted_estimate_list, formatted_vote_list)
 
         return rooms
 
