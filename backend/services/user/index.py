@@ -14,6 +14,7 @@ from services.user.showuser import showUser
 from services.user.removeuser import removeUser
 from services.user.showusers import showUsers
 from services.user.updateuser import updateUser
+from utilities.formatted_get_user_list import formatted_get_user_list
 
 class IndexUserServices():
     def __init__(self, repository: dict = indexRepositories(), user_dto: dict = userDto) -> None:
@@ -47,7 +48,7 @@ class IndexUserServices():
         return user
 
     def showUsers(self) -> list:
-        users = showUsers(self.repository)
+        users = showUsers(self.repository, formatted_get_user_list)
 
         return users
 
