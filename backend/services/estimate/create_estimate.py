@@ -1,6 +1,6 @@
 def create_estimate(estimate_repository: object, user_repository: object, estimateid, estimate_data: dict, room_name: str,
 primary_user_key: str, room_dto: dict, formatted_user_list, formatted_message_list, formatted_user_story_list ,
-formatted_estimate_list) -> dict:
+formatted_estimate_list, formatted_vote_list) -> dict:
     try:
         string_estimateid = str(estimateid)
         user_found = user_repository.find_by_mongo_id(primary_user_key)
@@ -12,7 +12,7 @@ formatted_estimate_list) -> dict:
         room_dto['users'] = formatted_user_list(updated_room)
         room_dto['messages'] = formatted_message_list(updated_room)
         room_dto['user_stories'] = formatted_user_story_list(updated_room)
-        room_dto['estimates'] = formatted_estimate_list(updated_room)
+        room_dto['estimates'] = formatted_estimate_list(updated_room, formatted_vote_list)
 
         return room_dto
     except Exception as e:

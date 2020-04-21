@@ -49,3 +49,4 @@ modify_commentary_action = ModifyComentary()
 # Check vote actions 
 create_vote_action = CreateVote()
 show_votes_action = ShowVotes()
+delete_vote_action = DeleteVote()

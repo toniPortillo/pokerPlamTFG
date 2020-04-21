@@ -9,6 +9,7 @@ from utils.flaskJWTextend.unauthorized_loader import *
 
 @api.route("/api/v1/estimate/create")
 class CreateEstimate(Resource):
+    @jwt_required
     def post(self) -> dict:
         try:
             room_name = request.args.get('room_name')
@@ -25,6 +26,7 @@ class CreateEstimate(Resource):
 
 @api.route("/api/v1/estimate/delete")
 class DeleteEstimate(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             estimateid = request.args.get('estimateid')
@@ -39,6 +41,7 @@ class DeleteEstimate(Resource):
 
 @api.route("/api/v1/estimate/modifyfinalvalue")
 class ModifyFinalValue(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             estimateid = request.args.get('estimateid')
@@ -54,6 +57,7 @@ class ModifyFinalValue(Resource):
 
 @api.route("/api/v1/estimate/modifytitle")
 class ModifyTitle(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             estimateid = request.args.get('estimateid')
@@ -69,6 +73,7 @@ class ModifyTitle(Resource):
 
 @api.route("/api/v1/estimate/modifycommentary")
 class ModifyComentary(Resource):
+    @jwt_required
     def put(self) -> dict:
         try:
             estimateid = request.args.get('estimateid')

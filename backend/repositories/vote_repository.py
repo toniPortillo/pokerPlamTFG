@@ -49,7 +49,8 @@ class VoteRepository():
                         if(vote['voter'] == nickname):
                             value.votes.remove(vote)
                             found_room.save()
+                            print(value['estimateid'])
                             return value
-                    raise Exception("Yout vote does not exist")
+                    raise Exception("Your vote does not exist")
         except Exception as e:
             raise Exception(str(e))

@@ -13,6 +13,7 @@ from utilities.formatted_estimate_list import formatted_estimate_list
 from utilities.formatted_vote_list import formatted_vote_list
 from services.vote.create_vote import create_vote
 from services.vote.show_votes import show_votes
+from services.vote.delete_vote import delete_vote
 
 class IndexVoteServices():
     def __init__(self, repository: dict = indexRepositories(), room_dto: dict = room_dto) -> None:
@@ -32,5 +33,10 @@ class IndexVoteServices():
 
     def show_votes(self, room_name: str, estimateid: str) -> dict:
         estimate = show_votes(self.repository, room_name, estimateid, self.estimate_dto, formatted_vote_list)
+
+        return estimate
+
+    def delete_vote(self, room_name: str, estimateid: str, nickname: str) -> dict:
+        estimate =  delete_vote(self.repository, room_name, estimateid, nickname, self.estimate_dto, formatted_vote_list)
 
         return estimate
