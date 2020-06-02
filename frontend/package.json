@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "vue-socket.io": "^3.0.0",
     "actioncable": "^5.2.3",
     "axios": "^0.19.0",
     "vue": "^2.5.2",
