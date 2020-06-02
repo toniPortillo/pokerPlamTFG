@@ -1,0 +1,5 @@
+export const CONVERSATION_PUBLISH = 'conversationPublish'
+export const CONVERSATION_RESET_STATE = 'resetConversationState'
+export const MESSAGE_CREATE = 'createMessage'
+export const FETCH_CONVERSATION = 'fetchConversation'
+export const FETCH_MESSAGES = 'fetchMessages'
